@@ -11,6 +11,8 @@ import Warning from "../../assets/images/icon-error.svg";
 
 const LoginForm = () => {
   const [info, setInfo] = useState(initialValues);
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -96,6 +98,7 @@ const LoginForm = () => {
           setHeight="90px"
           changeBtn={info.id && info.password ? "true" : "false"}
           type="submit"
+          isDisabled={info.id && info.password ? false : true}
         >
           로그인
         </Button>

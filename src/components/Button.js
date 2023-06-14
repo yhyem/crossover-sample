@@ -1,10 +1,15 @@
 import { styled } from "styled-components";
 
 const Button = (props) => {
-  const { setWidth, setHeight, children, changeBtn } = props;
+  const { setWidth, setHeight, children, changeBtn, isDisabled } = props;
   return (
     <>
-      <ButtonBlock width={setWidth} height={setHeight} active={changeBtn}>
+      <ButtonBlock
+        width={setWidth}
+        height={setHeight}
+        active={changeBtn}
+        disabled={isDisabled}
+      >
         {children}
       </ButtonBlock>
     </>
