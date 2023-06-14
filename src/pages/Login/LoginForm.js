@@ -14,49 +14,52 @@ const LoginForm = () => {
     <>
       <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
         <Title>로그인</Title>
-        <Label>
-          <input
-            placeholder="아이디"
-            id="id"
-            type="id"
-            {...register("id")}
-            onChange={(e) => setInfo({ ...info, id: e.target.value })}
-            value={info.id}
-          />
-          {info.id ? (
-            <img
-              src={Delete}
-              onClick={() => setInfo({ ...info, id: "" })}
-              alt="input-id"
+        <LoginTop>
+          <Label>
+            <input
+              placeholder="아이디"
+              id="id"
+              type="id"
+              {...register("id")}
+              onChange={(e) => setInfo({ ...info, id: e.target.value })}
+              value={info.id}
             />
-          ) : (
-            <HelpText>
-              영문과 숫자을 조합하여 5~10글자 미만으로 입력하여 주세요.
-            </HelpText>
-          )}
-        </Label>
-        <Label>
-          <input
-            placeholder="비밀번호"
-            id="password"
-            type="password"
-            {...register("password")}
-            onChange={(e) => setInfo({ ...info, password: e.target.value })}
-            value={info.password}
-          />
-          {info.password ? (
-            <img
-              src={Delete}
-              onClick={() => setInfo({ ...info, password: "" })}
-              alt="input-password"
+            {info.id ? (
+              <img
+                src={Delete}
+                onClick={() => setInfo({ ...info, id: "" })}
+                alt="input-id"
+              />
+            ) : (
+              <HelpText>
+                영문과 숫자을 조합하여 5~10글자 미만으로 입력하여 주세요.
+              </HelpText>
+            )}
+          </Label>
+          {info.id ? <Gap /> : ""}
+          <Label>
+            <input
+              placeholder="비밀번호"
+              id="password"
+              type="password"
+              {...register("password")}
+              onChange={(e) => setInfo({ ...info, password: e.target.value })}
+              value={info.password}
             />
-          ) : (
-            <HelpText>
-              영문과 숫자, 특수기호를 조합하여 8~14 글자 미만으로 입력하여
-              주세요.
-            </HelpText>
-          )}
-        </Label>
+            {info.password ? (
+              <img
+                src={Delete}
+                onClick={() => setInfo({ ...info, password: "" })}
+                alt="input-password"
+              />
+            ) : (
+              <HelpText>
+                영문과 숫자, 특수기호를 조합하여 8~14 글자 미만으로 입력하여
+                주세요.
+              </HelpText>
+            )}
+          </Label>
+        </LoginTop>
         <Button
           setWidth="540px"
           setHeight="90px"
@@ -79,6 +82,16 @@ const Title = styled.div`
   margin: 31px 0 74px 0;
 `;
 
+const LoginTop = styled.div`
+  width: 540px;
+  height: 264px;
+  margin-bottom: 56px;
+`;
+
+const Gap = styled.div`
+  height: 16px;
+`;
+
 const Label = styled.label`
   position: relative;
   width: 540px;
@@ -90,7 +103,6 @@ const Label = styled.label`
     border-radius: 25px;
     font-weight: 500;
     font-size: 20px;
-    margin-bottom: 16px;
     padding-left: 28.5px;
 
     ::placeholder {

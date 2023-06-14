@@ -43,6 +43,7 @@ const JoinForm = () => {
               </HelpText>
             )}
           </Label>
+          {info.id ? <Gap /> : ""}
           <Label>
             <input
               placeholder="비밀번호"
@@ -65,6 +66,7 @@ const JoinForm = () => {
               </HelpText>
             )}
           </Label>
+          {info.password ? <Gap /> : ""}
           <Label>
             <input
               placeholder="이메일"
@@ -115,6 +117,10 @@ const Title = styled.div`
   margin: 31px 0 74px 0;
 `;
 
+const Gap = styled.div`
+  height: 16px;
+`;
+
 const Label = styled.label`
   position: relative;
   width: 540px;
@@ -126,7 +132,6 @@ const Label = styled.label`
     border-radius: 25px;
     font-weight: 500;
     font-size: 20px;
-    margin-bottom: 16px;
     padding-left: 28.5px;
 
     ::placeholder {
