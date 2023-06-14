@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import { PrivacyAgreement } from "../../assets/data/PrivacyAgreement";
-import { useState } from "react";
 import checkFalse from "../../assets/images/check-false.svg";
 import checkTrue from "../../assets/images/check-true.svg";
 

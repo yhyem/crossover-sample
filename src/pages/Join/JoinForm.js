@@ -1,25 +1,36 @@
 import { styled } from "styled-components";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import PrivayPolicyForm from "./PrivayPolicyForm";
 import Button from "../../components/Button";
-import { initialValues } from "./Validation";
+import { initialValues, validation } from "./Validation";
 import Delete from "../../assets/images/icon-cancel.svg";
 
 const JoinForm = () => {
   const [info, setInfo] = useState(initialValues);
   const [isCheck, setIsCheck] = useState(false);
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validation),
+  });
 
   const onCheck = () => {
     setIsCheck(!isCheck);
   };
 
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <JoinTop>
           <Title>회원가입</Title>
           <Label>
@@ -43,7 +54,8 @@ const JoinForm = () => {
               </HelpText>
             )}
           </Label>
-          {info.id ? <Gap /> : ""}
+          {errors.id && <h3>{errors.id.message}</h3>}
+          {info.id || errors.id ? <Gap /> : ""}
           <Label>
             <input
               placeholder="비밀번호"
@@ -66,7 +78,8 @@ const JoinForm = () => {
               </HelpText>
             )}
           </Label>
-          {info.password ? <Gap /> : ""}
+          {errors.password && <h3>{errors.password.message}</h3>}
+          {info.password || errors.password ? <Gap /> : ""}
           <Label>
             <input
               placeholder="이메일"
@@ -89,6 +102,7 @@ const JoinForm = () => {
         </JoinTop>
         <PrivayPolicyForm onCheck={onCheck} isCheck={isCheck} />
         <Button
+          type="submit"
           setWidth="540px"
           setHeight="90px"
           changeBtn={
@@ -115,10 +129,6 @@ const Title = styled.div`
   font-weight: 600;
   color: "#000000";
   margin: 31px 0 74px 0;
-`;
-
-const Gap = styled.div`
-  height: 16px;
 `;
 
 const Label = styled.label`
@@ -156,4 +166,8 @@ const HelpText = styled.div`
   line-height: 19px;
   color: #000000;
   opacity: 45%;
+`;
+
+const Gap = styled.div`
+  height: 16px;
 `;
