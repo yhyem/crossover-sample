@@ -11,7 +11,6 @@ import Warning from "../../assets/images/icon-error.svg";
 
 const LoginForm = () => {
   const [info, setInfo] = useState(initialValues);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   const {
     register,
@@ -137,7 +136,7 @@ const Label = styled.label`
     font-size: 20px;
     padding-left: 28.5px;
     color: ${({ iserror, theme }) =>
-      iserror === "true" ? theme.colors.RED : theme.colors.GRAY};
+      iserror === "true" ? theme.colors.RED : "#000000"};
 
     ::placeholder {
       color: #000000;
