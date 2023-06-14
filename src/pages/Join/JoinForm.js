@@ -55,7 +55,7 @@ const JoinForm = () => {
             )}
           </Label>
           {errors.id && <h3>{errors.id.message}</h3>}
-          {info.id || errors.id ? <Gap /> : ""}
+          {info.id || !errors.id ? <Gap /> : ""}
           <Label>
             <input
               placeholder="비밀번호"
@@ -79,7 +79,7 @@ const JoinForm = () => {
             )}
           </Label>
           {errors.password && <h3>{errors.password.message}</h3>}
-          {info.password || errors.password ? <Gap /> : ""}
+          {info.password || !errors.password ? <Gap /> : ""}
           <Label>
             <input
               placeholder="이메일"

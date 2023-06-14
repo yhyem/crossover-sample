@@ -58,7 +58,7 @@ const LoginForm = () => {
             )}
           </Label>
           {errors.id && <ErrorText>{errors.id.message}</ErrorText>}
-          {info.id || errors.id ? <Gap /> : ""}
+          {info.id && !errors.id ? <Gap /> : ""}
           <Label iserror={errors.password ? "true" : "false"}>
             <input
               placeholder="비밀번호"
