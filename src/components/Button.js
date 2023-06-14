@@ -4,11 +4,7 @@ const Button = (props) => {
   const { setWidth, setHeight, children, changeBtn } = props;
   return (
     <>
-      <ButtonBlock
-        width={setWidth}
-        height={setHeight}
-        active={changeBtn.toString()}
-      >
+      <ButtonBlock width={setWidth} height={setHeight} active={changeBtn}>
         {children}
       </ButtonBlock>
     </>
