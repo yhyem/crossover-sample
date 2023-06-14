@@ -4,8 +4,7 @@ import { useState } from "react";
 import checkFalse from "../../assets/images/check-false.svg";
 import checkTrue from "../../assets/images/check-true.svg";
 
-const PrivayPolicyForm = () => {
-  const [isCheck, setIsCheck] = useState(false);
+const PrivayPolicyForm = ({ onCheck, isCheck }) => {
   return (
     <>
       <PrivayPolicyBlock>
@@ -15,9 +14,9 @@ const PrivayPolicyForm = () => {
             <Title font="#000000">&nbsp;개인정보보호정책</Title>
           </WrapTitle>
           {isCheck ? (
-            <CheckBox src={checkTrue} onClick={() => setIsCheck(false)} />
+            <CheckBox src={checkTrue} onClick={onCheck} />
           ) : (
-            <CheckBox src={checkFalse} onClick={() => setIsCheck(true)} />
+            <CheckBox src={checkFalse} onClick={onCheck} />
           )}
         </TitleBlock>
         <ContentBlock>

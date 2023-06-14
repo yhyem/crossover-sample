@@ -9,7 +9,13 @@ import Delete from "../../assets/images/icon-cancel.svg";
 
 const JoinForm = () => {
   const [info, setInfo] = useState(initialValues);
+  const [isCheck, setIsCheck] = useState(false);
+
   const { register, handleSubmit } = useForm();
+
+  const onCheck = () => {
+    setIsCheck(!isCheck);
+  };
 
   return (
     <>
@@ -79,11 +85,13 @@ const JoinForm = () => {
             )}
           </Label>
         </JoinTop>
-        <PrivayPolicyForm />
+        <PrivayPolicyForm onCheck={onCheck} isCheck={isCheck} />
         <Button
           setWidth="540px"
           setHeight="90px"
-          changeBtn={info.id && info.password && info.email ? "true" : "false"}
+          changeBtn={
+            info.id && info.password && info.email && isCheck ? "true" : "false"
+          }
         >
           완료하기
         </Button>
