@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Main from "./pages/Main/Main";
-import Login from "./pages/Login/Login";
-import Join from "./pages/Join/Join";
+import Login from "./pages/Login";
+import Join from "./pages/Join";
 import Content from "./pages/Content/Content";
 
 import GlobalStyle from "./styles/GlobalStyle";

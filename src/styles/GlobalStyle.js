@@ -1,26 +1,36 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import "./GlobalFont.css";
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
     body{
         padding: 0;
         margin: 0;
-        font-family: 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP','Montserrat', sans-serif;
+        font-family: 'Inter';
     };
-    button{
-        cursor: pointer;
-        border :none;
-    };
-    input{
-        font-family:'Spoqa Han Sans Neo';
-        padding-left: 10px;
-    };
-    textarea{
-        font-family:'Spoqa Han Sans Neo';
+    a{
+        text-decoration: none;
+        color: inherit;
     }
-    ::placeholder{
-        font-family:'Spoqa Han Sans Neo'
+    *{
+        box-sizing: border-box;
+    }
+    input, textarea { 
+      -moz-user-select: auto;
+      -webkit-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+    }
+    input:focus {
+      outline: none;
+    }
+
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
     }
 `;
 
