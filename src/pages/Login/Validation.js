@@ -8,6 +8,7 @@ export const initialValues = {
 export const validation = yup.object().shape({
   id: yup
     .string()
+    .matches(/^[A-Za-z0-9]+$/, "사용하실 수 없는 아이디 입니다.")
     .min(5, "사용하실 수 없는 아이디 입니다.")
     .max(10, "사용하실 수 없는 아이디 입니다."),
   password: yup
