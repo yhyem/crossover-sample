@@ -9,6 +9,7 @@ import Button from "../../components/Button";
 
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
+import Success from "../../assets/images/icon-success.svg";
 
 const JoinForm = () => {
   const [info, setInfo] = useState(initialValues);
@@ -40,9 +41,9 @@ const JoinForm = () => {
               placeholder="아이디"
               id="id"
               type="text"
+              value={info.id}
               {...register("id")}
               onChange={(e) => setInfo({ ...info, id: e.target.value })}
-              value={info.id}
             />
             {info.id || errors.id ? (
               <DeleteButton
@@ -71,9 +72,9 @@ const JoinForm = () => {
               placeholder="비밀번호"
               id="password"
               type="password"
+              value={info.password}
               {...register("password")}
               onChange={(e) => setInfo({ ...info, password: e.target.value })}
-              value={info.password}
             />
             {info.password || errors.password ? (
               <DeleteButton
@@ -103,9 +104,9 @@ const JoinForm = () => {
               placeholder="이메일"
               id="email"
               type="text"
+              value={info.email}
               {...register("email")}
               onChange={(e) => setInfo({ ...info, email: e.target.value })}
-              value={info.email}
             />
             {info.email || errors.email ? (
               <DeleteButton

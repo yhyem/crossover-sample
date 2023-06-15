@@ -93,10 +93,10 @@ const LoginForm = () => {
           {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
         </LoginTop>
         <Button
+          type="submit"
           setWidth="540px"
           setHeight="90px"
           changeBtn={info.id && info.password ? "true" : "false"}
-          type="submit"
           isDisabled={info.id && info.password ? false : true}
         >
           로그인
