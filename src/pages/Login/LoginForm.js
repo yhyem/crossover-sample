@@ -96,6 +96,7 @@ const LoginForm = () => {
           type="submit"
           setWidth="540px"
           setHeight="90px"
+          fontSize="36px"
           changeBtn={info.id && info.password ? "true" : "false"}
           isDisabled={info.id && info.password ? false : true}
         >

@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
 
 const Button = (props) => {
-  const { setWidth, setHeight, children, changeBtn, isDisabled } = props;
+  const { setWidth, setHeight, children, changeBtn, isDisabled, fontSize } =
+    props;
   return (
     <>
       <ButtonBlock
@@ -9,6 +10,7 @@ const Button = (props) => {
         height={setHeight}
         active={changeBtn}
         disabled={isDisabled}
+        fontSize={fontSize}
       >
         {children}
       </ButtonBlock>
@@ -26,6 +28,6 @@ const ButtonBlock = styled.button`
   color: #ffffff;
   font-weight: 600;
   line-height: ${({ height }) => height};
-  font-size: 36px;
+  font-size: ${({ fontSize }) => fontSize};
   border-radius: 25px;
 `;
