@@ -39,7 +39,7 @@ const JoinForm = () => {
             <input
               placeholder="아이디"
               id="id"
-              type="id"
+              type="text"
               {...register("id")}
               onChange={(e) => setInfo({ ...info, id: e.target.value })}
               value={info.id}
@@ -98,11 +98,11 @@ const JoinForm = () => {
           </Label>
           {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
           {info.password && !errors.password ? <Gap /> : ""}
-          <Label>
+          <Label iserror={errors.id ? "true" : "false"}>
             <input
               placeholder="이메일"
               id="email"
-              type="email"
+              type="text"
               {...register("email")}
               onChange={(e) => setInfo({ ...info, email: e.target.value })}
               value={info.email}
