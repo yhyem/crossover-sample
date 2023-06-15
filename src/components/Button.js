@@ -1,8 +1,15 @@
 import { styled } from "styled-components";
 
 const Button = (props) => {
-  const { setWidth, setHeight, children, changeBtn, isDisabled, fontSize } =
-    props;
+  const {
+    setWidth,
+    setHeight,
+    children,
+    changeBtn,
+    isDisabled,
+    fontSize,
+    backColor,
+  } = props;
   return (
     <>
       <ButtonBlock
@@ -11,6 +18,7 @@ const Button = (props) => {
         active={changeBtn}
         disabled={isDisabled}
         fontSize={fontSize}
+        backColor={backColor}
       >
         {children}
       </ButtonBlock>
@@ -23,8 +31,8 @@ export default Button;
 const ButtonBlock = styled.button`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
-  background-color: ${({ active, theme }) =>
-    active === "true" ? theme.colors.BLUE2 : theme.colors.BLUE1};
+  background-color: ${({ active, backColor, theme }) =>
+    active === "true" ? theme.colors.BLUE2 : backColor};
   color: #ffffff;
   font-weight: 600;
   line-height: ${({ height }) => height};

@@ -1,8 +1,11 @@
 import { useState } from "react";
-import Content from "./Content";
-import { MockupData } from "./MokupData";
-import Button from "../../components/Button";
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
+
+import Content from "./Content";
+import Button from "../../components/Button";
+
+import { MockupData } from "./MokupData";
 
 const Main = () => {
   const [data, setData] = useState(MockupData);
@@ -15,15 +18,20 @@ const Main = () => {
             <Button
               setWidth="233px"
               setHeight="70px"
-              changeBtn="true"
+              changeBtn="false"
               fontSize="21px"
               isDisabled={false}
+              backColor="#2186FC"
             >
               작성하기
             </Button>
           </ButtonBlock>
           {data.map((item) => (
-            <Content key={item.id} data={item} />
+            <div key={item.id}>
+              <Link to={`/content/${item.id}`}>
+                <Content data={item} />
+              </Link>
+            </div>
           ))}
         </ContentBlock>
       </MainBlock>

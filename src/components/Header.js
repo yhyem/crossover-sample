@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import logo from "../assets/images/logo.svg";
 import logout from "../assets/images/btn-logout.svg";
@@ -9,7 +10,9 @@ const Header = () => {
 
   return (
     <HeaderBlock>
-      <Logo src={logo} />
+      <Link to="/">
+        <Logo src={logo} />
+      </Link>
       {isLogin && <Logout src={logout} />}
     </HeaderBlock>
   );

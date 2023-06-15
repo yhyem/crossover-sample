@@ -99,6 +99,7 @@ const LoginForm = () => {
           fontSize="36px"
           changeBtn={info.id && info.password ? "true" : "false"}
           isDisabled={info.id && info.password ? false : true}
+          backColor="#99CEFF"
         >
           로그인
         </Button>

@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
-import Content from "./pages/Content/Content";
+import Detail from "./pages/Detail";
 
 import GlobalStyle from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
@@ -17,9 +17,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/content/:id" element={<Detail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/content/:id" element={<Content />} />
       </Routes>
     </ThemeProvider>
   );

@@ -9,7 +9,6 @@ import Button from "../../components/Button";
 
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
-import Success from "../../assets/images/icon-success.svg";
 
 const JoinForm = () => {
   const [info, setInfo] = useState(initialValues);
@@ -140,6 +139,7 @@ const JoinForm = () => {
           isDisabled={
             info.id && info.password && info.email && isCheck ? false : true
           }
+          backColor="#99CEFF"
         >
           완료하기
         </Button>
