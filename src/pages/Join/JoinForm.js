@@ -98,7 +98,7 @@ const JoinForm = () => {
           </Label>
           {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
           {info.password && !errors.password ? <Gap /> : ""}
-          <Label iserror={errors.id ? "true" : "false"}>
+          <Label iserror={errors.email ? "true" : "false"}>
             <input
               placeholder="이메일"
               id="email"
