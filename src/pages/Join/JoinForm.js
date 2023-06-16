@@ -9,6 +9,7 @@ import Button from "../../components/Button";
 
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
+import Success from "../../assets/images/icon-success.svg";
 
 const JoinForm = () => {
   const [info, setInfo] = useState(initialValues);
@@ -18,8 +19,11 @@ const JoinForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
+    setValue,
   } = useForm({
     resolver: yupResolver(validation),
+    mode: "onChange",
   });
 
   const onCheck = () => {
@@ -27,7 +31,7 @@ const JoinForm = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    setInfo(data);
   };
 
   return (
@@ -35,21 +39,23 @@ const JoinForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <JoinTop>
           <Title>회원가입</Title>
-          <Label iserror={errors.id ? "true" : "false"}>
+          <Label
+            iserror={errors.id ? "true" : "false"}
+            issuccess={!errors.id && getValues("id") ? "true" : "false"}
+          >
             <input
               placeholder="아이디"
               id="id"
               type="text"
-              value={info.id}
               {...register("id")}
-              onChange={(e) => setInfo({ ...info, id: e.target.value })}
             />
-            {info.id || errors.id ? (
+            {getValues("id") || errors.id ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  setInfo({ ...info, id: "" });
+                  setValue("id", "");
                   errors.id = "";
+                  setInfo({ ...info, id: "" });
                 }}
                 alt="input-id"
               />
@@ -58,29 +64,43 @@ const JoinForm = () => {
                 영문과 숫자을 조합하여 5~10글자 미만으로 입력하여 주세요.
               </HelpText>
             )}
-            {errors.id ? (
-              <ErrorButton src={Warning} alt="warning-button" />
+            {getValues("id") ? (
+              errors.id ? (
+                <StateButton src={Warning} alt="warning-button" />
+              ) : (
+                <StateButton src={Success} alt="warning-button" />
+              )
             ) : (
               ""
             )}
           </Label>
-          {errors.id && <ErrorText>{errors.id.message}</ErrorText>}
-          {info.id && !errors.id ? <Gap /> : ""}
-          <Label iserror={errors.password ? "true" : "false"}>
+          {errors.id && (
+            <StateText issuccess="false">{errors.id.message}</StateText>
+          )}
+          {getValues("id") && !errors.id ? (
+            <StateText issuccess="true">사용 가능한 아이디 입니다.</StateText>
+          ) : (
+            ""
+          )}
+          <Label
+            iserror={errors.password ? "true" : "false"}
+            issuccess={
+              !errors.password && getValues("password") ? "true" : "false"
+            }
+          >
             <input
               placeholder="비밀번호"
               id="password"
               type="password"
-              value={info.password}
               {...register("password")}
-              onChange={(e) => setInfo({ ...info, password: e.target.value })}
             />
-            {info.password || errors.password ? (
+            {getValues("password") || errors.password ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  setInfo({ ...info, password: "" });
+                  setValue("password", "");
                   errors.password = "";
+                  setInfo({ ...info, password: "" });
                 }}
                 alt="input-password"
               />
@@ -90,42 +110,67 @@ const JoinForm = () => {
                 주세요.
               </HelpText>
             )}
-            {errors.password ? (
-              <ErrorButton src={Warning} alt="warning-button" />
+            {getValues("password") ? (
+              errors.password ? (
+                <StateButton src={Warning} alt="warning-button" />
+              ) : (
+                <StateButton src={Success} alt="warning-button" />
+              )
             ) : (
               ""
             )}
           </Label>
-          {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
-          {info.password && !errors.password ? <Gap /> : ""}
-          <Label iserror={errors.email ? "true" : "false"}>
+          {errors.password && (
+            <StateText issuccess="false">{errors.password.message}</StateText>
+          )}
+          {getValues("password") && !errors.password ? (
+            <StateText issuccess="true">사용 가능한 비밀번호 입니다.</StateText>
+          ) : (
+            ""
+          )}
+          <Label
+            iserror={errors.email ? "true" : "false"}
+            issuccess={!errors.email && getValues("email") ? "true" : "false"}
+          >
             <input
               placeholder="이메일"
               id="email"
               type="text"
-              value={info.email}
               {...register("email")}
-              onChange={(e) => setInfo({ ...info, email: e.target.value })}
             />
-            {info.email || errors.email ? (
+            {getValues("email") || errors.email ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  setInfo({ ...info, email: "" });
+                  setValue("email", "");
                   errors.email = "";
+                  setInfo({ ...info, email: "" });
                 }}
                 alt="input-email"
               />
             ) : (
-              <HelpText>사용하실 이메일을 입력해주세요.</HelpText>
+              <HelpText>
+                영문과 숫자을 조합하여 5~10글자 미만으로 입력하여 주세요.
+              </HelpText>
             )}
-            {errors.email ? (
-              <ErrorButton src={Warning} alt="warning-button" />
+            {getValues("email") ? (
+              errors.email ? (
+                <StateButton src={Warning} alt="warning-button" />
+              ) : (
+                <StateButton src={Success} alt="warning-button" />
+              )
             ) : (
               ""
             )}
           </Label>
-          {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
+          {errors.email && (
+            <StateText issuccess="false">{errors.email.message}</StateText>
+          )}
+          {getValues("email") && !errors.email ? (
+            <StateText issuccess="true">사용 가능한 아이디 입니다.</StateText>
+          ) : (
+            ""
+          )}
         </JoinTop>
         <PrivayPolicyForm onCheck={onCheck} isCheck={isCheck} />
         <Button
@@ -134,10 +179,20 @@ const JoinForm = () => {
           setHeight="90px"
           fontSize="36px"
           changeBtn={
-            info.id && info.password && info.email && isCheck ? "true" : "false"
+            getValues("id") &&
+            getValues("password") &&
+            getValues("email") &&
+            isCheck
+              ? "true"
+              : "false"
           }
           isDisabled={
-            info.id && info.password && info.email && isCheck ? false : true
+            getValues("id") &&
+            getValues("password") &&
+            getValues("email") &&
+            isCheck
+              ? false
+              : true
           }
           backColor="#99CEFF"
           activeColor="#59A4FB"
@@ -172,14 +227,22 @@ const Label = styled.label`
     width: 540px;
     height: 90px;
     border: 1px solid
-      ${({ iserror, theme }) =>
-        iserror === "true" ? theme.colors.RED : theme.colors.GRAY};
+      ${({ iserror, theme, issuccess }) =>
+        iserror === "true"
+          ? theme.colors.RED
+          : issuccess === "true"
+          ? theme.colors.GREEN
+          : theme.colors.GRAY};
     border-radius: 25px;
     font-weight: 500;
     font-size: 20px;
     padding-left: 28.5px;
-    color: ${({ iserror, theme }) =>
-      iserror === "true" ? theme.colors.RED : "#000000"};
+    color: ${({ iserror, issuccess, theme }) =>
+      iserror === "true"
+        ? theme.colors.RED
+        : issuccess === "true"
+        ? theme.colors.GREEN
+        : "#000000"};
 
     ::placeholder {
       color: #000000;
@@ -200,23 +263,19 @@ const HelpText = styled.div`
   opacity: 45%;
 `;
 
-const Gap = styled.div`
-  height: 16px;
-`;
-
 const DeleteButton = styled.img`
   position: absolute;
   right: 26px;
   margin-top: 29px;
 `;
 
-const ErrorButton = styled.img`
+const StateButton = styled.img`
   position: absolute;
   right: 66px;
   margin-top: 29px;
 `;
 
-const ErrorText = styled.div`
+const StateText = styled.div`
   text-align: left;
   width: 495px;
   height: 19px;
@@ -224,5 +283,8 @@ const ErrorText = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  color: ${({ theme }) => theme.colors.RED};
+  color: ${({ issuccess }) =>
+    issuccess === "true"
+      ? ({ theme }) => theme.colors.GREEN
+      : ({ theme }) => theme.colors.RED};
 `;
