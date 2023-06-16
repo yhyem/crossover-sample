@@ -100,6 +100,7 @@ const LoginForm = () => {
           changeBtn={info.id && info.password ? "true" : "false"}
           isDisabled={info.id && info.password ? false : true}
           backColor="#99CEFF"
+          activeColor="#59A4FB"
         >
           로그인
         </Button>

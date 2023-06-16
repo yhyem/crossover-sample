@@ -15,20 +15,22 @@ const Main = () => {
       <MainBlock>
         <ContentBlock>
           <ButtonBlock>
-            <Button
-              setWidth="233px"
-              setHeight="70px"
-              changeBtn="false"
-              fontSize="21px"
-              isDisabled={false}
-              backColor="#2186FC"
-            >
-              작성하기
-            </Button>
+            <Link to="/write">
+              <Button
+                setWidth="233px"
+                setHeight="70px"
+                changeBtn="false"
+                fontSize="21px"
+                isDisabled={false}
+                backColor="#2186FC"
+              >
+                작성하기
+              </Button>
+            </Link>
           </ButtonBlock>
           {data.map((item) => (
             <div key={item.id}>
-              <Link to={`/content/${item.id}`}>
+              <Link to={`/${item.id}`}>
                 <Content data={item} />
               </Link>
             </div>

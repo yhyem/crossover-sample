@@ -140,6 +140,7 @@ const JoinForm = () => {
             info.id && info.password && info.email && isCheck ? false : true
           }
           backColor="#99CEFF"
+          activeColor="#59A4FB"
         >
           완료하기
         </Button>

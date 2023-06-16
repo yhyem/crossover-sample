@@ -9,6 +9,7 @@ const Button = (props) => {
     isDisabled,
     fontSize,
     backColor,
+    activeColor,
   } = props;
   return (
     <>
@@ -18,7 +19,8 @@ const Button = (props) => {
         active={changeBtn}
         disabled={isDisabled}
         fontSize={fontSize}
-        backColor={backColor}
+        backcolor={backColor}
+        activecolor={activeColor}
       >
         {children}
       </ButtonBlock>
@@ -31,8 +33,8 @@ export default Button;
 const ButtonBlock = styled.button`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
-  background-color: ${({ active, backColor, theme }) =>
-    active === "true" ? theme.colors.BLUE2 : backColor};
+  background-color: ${({ active, backcolor, activecolor }) =>
+    active === "true" ? activecolor : backcolor};
   color: #ffffff;
   font-weight: 600;
   line-height: ${({ height }) => height};

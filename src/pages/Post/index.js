@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 import Button from "../../components/Button";
 
-const Detail = () => {
+const Post = () => {
   return (
     <>
       <DetailBlock>
@@ -11,7 +11,7 @@ const Detail = () => {
             <Title>제목:</Title> <CountText>(0/20)</CountText>
           </PostTitle>
           <PostContent>
-            <Content>내용:</Content>
+            <Content>내용이 들어갑니다</Content>
             <CountText>(0/140)</CountText>
           </PostContent>
           <BottomBlock>
@@ -35,7 +35,7 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default Post;
 
 const DetailBlock = styled.div`
   display: flex;
