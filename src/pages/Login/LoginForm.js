@@ -1,24 +1,25 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { initialValues, validation } from "./Validation";
+import { validation } from "./Validation";
 import Button from "../../components/Button";
 
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
 
 const LoginForm = () => {
-  const [info, setInfo] = useState(initialValues);
-
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(validation),
   });
+
+  const values = watch();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -36,16 +37,13 @@ const LoginForm = () => {
                 id="id"
                 type="id"
                 {...register("id")}
-                onChange={(e) => setInfo({ ...info, id: e.target.value })}
-                value={info.id}
               />
             </InputBlock>
-            {info.id || errors.id ? (
+            {values.id || errors.id ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  setInfo({ ...info, id: "" });
-                  errors.id = "";
+                  setValue("id", "");
                 }}
                 alt="input-id"
               />
@@ -61,7 +59,7 @@ const LoginForm = () => {
             )}
           </Label>
           {errors.id && <ErrorText>{errors.id.message}</ErrorText>}
-          {info.id && !errors.id ? <Gap /> : ""}
+          {values.id && !errors.id ? <Gap /> : ""}
           <Label>
             <InputBlock iserror={errors.password ? "true" : "false"}>
               <input
@@ -69,16 +67,13 @@ const LoginForm = () => {
                 id="password"
                 type="password"
                 {...register("password")}
-                onChange={(e) => setInfo({ ...info, password: e.target.value })}
-                value={info.password}
               />
             </InputBlock>
-            {info.password || errors.password ? (
+            {values.password || errors.password ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  setInfo({ ...info, password: "" });
-                  errors.password = "";
+                  setValue("password", "");
                 }}
                 alt="input-password"
               />
@@ -101,8 +96,8 @@ const LoginForm = () => {
           setWidth="540px"
           setHeight="90px"
           fontSize="36px"
-          changeBtn={info.id && info.password ? "true" : "false"}
-          isDisabled={info.id && info.password ? false : true}
+          changeBtn={values.id && values.password ? "true" : "false"}
+          isDisabled={values.id && values.password ? false : true}
           backColor="#99CEFF"
           activeColor="#59A4FB"
         >
