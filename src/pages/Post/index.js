@@ -50,6 +50,7 @@ const PostBlock = styled.div`
 
 const PostTitle = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-top: 12px;
   width: 794px;
   height: 134px;
@@ -62,7 +63,7 @@ const Title = styled.div`
   font-weight: 600;
   font-size: 24px;
   line-height: 24px;
-  width: 631px;
+  width: 613px;
   height: 24px;
 `;
 

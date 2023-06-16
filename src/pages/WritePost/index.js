@@ -20,14 +20,16 @@ const WritePost = () => {
         <PostBlock>
           <form onSubmit={handleSubmit(onSubmit)}>
             <PostTitle>
-              <Title>제목:</Title>
-              <TitleInput
-                maxLength={20}
-                id="title"
-                type="text"
-                {...register("title")}
-                onChange={(e) => setTitleCount(e.target.value)}
-              />
+              <WrapTitle>
+                <Title>제목:</Title>
+                <TitleInput
+                  maxLength={20}
+                  id="title"
+                  type="text"
+                  {...register("title")}
+                  onChange={(e) => setTitleCount(e.target.value)}
+                />
+              </WrapTitle>
               <CountText>( {titleCount.length} / 20 )</CountText>
             </PostTitle>
             <PostContent>
@@ -81,11 +83,16 @@ const PostBlock = styled.div`
 
 const PostTitle = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-top: 12px;
   height: 134px;
   border: 2px solid ${({ theme }) => theme.colors.GRAY};
   border-radius: 25px;
-  padding: 55px 46px 55px 35px;
+  padding: 55px 52px 55px 35px;
+`;
+
+const WrapTitle = styled.div`
+  display: flex;
 `;
 
 const Title = styled.div`
@@ -101,7 +108,7 @@ const TitleInput = styled.input`
   font-size: 24px;
   line-height: 24px;
   height: 24px;
-  width: 579px;
+  width: 561px;
   border: none;
 `;
 
