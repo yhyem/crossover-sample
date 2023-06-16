@@ -4,7 +4,7 @@ export const MockupData = [
     isMe: false,
     title: "text1",
     content: "머머머햇어용",
-    time: "18:30",
+    time: "15:20",
   },
   {
     id: "1",
@@ -32,6 +32,6 @@ export const MockupData = [
     isMe: true,
     title: "text5",
     content: "화이팅팅",
-    time: "6/15",
+    time: "1일전",
   },
 ];
