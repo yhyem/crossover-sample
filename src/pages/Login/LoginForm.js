@@ -11,6 +11,7 @@ import Warning from "../../assets/images/icon-error.svg";
 const LoginForm = () => {
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
     watch,
@@ -42,7 +43,7 @@ const LoginForm = () => {
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  errors.id = "";
+                  setValue("id", "");
                 }}
                 alt="input-id"
               />
@@ -72,7 +73,7 @@ const LoginForm = () => {
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  errors.password = "";
+                  setValue("password", "");
                 }}
                 alt="input-password"
               />
