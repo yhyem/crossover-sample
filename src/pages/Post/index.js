@@ -8,11 +8,11 @@ const Post = () => {
       <DetailBlock>
         <PostBlock>
           <PostTitle>
-            <Title>제목:</Title> <CountText>(0/20)</CountText>
+            <Title>제목:</Title> <CountText>( 0 / 20 )</CountText>
           </PostTitle>
           <PostContent>
             <Content>내용이 들어갑니다</Content>
-            <CountText>(0/140)</CountText>
+            <CountText>( 0 / 140 )</CountText>
           </PostContent>
           <BottomBlock>
             <InfoText>※ 작성된 게시글은 수정이 불가합니다.</InfoText>
@@ -81,6 +81,7 @@ const Content = styled.div`
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
+  margin-bottom: 12px;
 `;
 
 const BottomBlock = styled.div`
@@ -103,7 +104,6 @@ const CountText = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: ${({ theme }) => theme.colors.GRAY};
-  width: 82px;
   height: 24px;
 `;
 

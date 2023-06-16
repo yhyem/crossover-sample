@@ -28,7 +28,7 @@ const WritePost = () => {
                 {...register("title")}
                 onChange={(e) => setTitleCount(e.target.value)}
               />
-              <CountText>({titleCount.length}/20)</CountText>
+              <CountText>( {titleCount.length} / 20 )</CountText>
             </PostTitle>
             <PostContent>
               <ContentBlock>
@@ -40,7 +40,7 @@ const WritePost = () => {
                   onChange={(e) => setContentCount(e.target.value)}
                 />
               </ContentBlock>
-              <CountText>({contentCount.length}/140)</CountText>
+              <CountText>( {contentCount.length} / 140 )</CountText>
             </PostContent>
             <BottomBlock>
               <InfoText>※ 작성된 게시글은 수정이 불가합니다.</InfoText>
@@ -82,7 +82,6 @@ const PostBlock = styled.div`
 const PostTitle = styled.div`
   display: flex;
   margin-top: 12px;
-  width: 794px;
   height: 134px;
   border: 2px solid ${({ theme }) => theme.colors.GRAY};
   border-radius: 25px;
@@ -94,7 +93,7 @@ const Title = styled.div`
   font-size: 24px;
   line-height: 24px;
   height: 24px;
-  width: 49px;
+  width: 52px;
 `;
 
 const TitleInput = styled.input`
@@ -102,7 +101,7 @@ const TitleInput = styled.input`
   font-size: 24px;
   line-height: 24px;
   height: 24px;
-  width: 582px;
+  width: 579px;
   border: none;
 `;
 
@@ -124,9 +123,10 @@ const ContentInput = styled.textarea`
   font-size: 20px;
   line-height: 24px;
   height: 627px;
-  width: 673px;
+  width: 714px;
   border: none;
   resize: none;
+  margin-bottom: 12px;
 
   &:focus {
     outline: none;
@@ -153,7 +153,6 @@ const CountText = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: ${({ theme }) => theme.colors.GRAY};
-  width: 82px;
   height: 24px;
 `;
 
