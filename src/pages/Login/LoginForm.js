@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 import { validation } from "./Validation";
 import Button from "../../components/Button";
@@ -9,6 +10,8 @@ import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     setValue,
@@ -23,6 +26,7 @@ const LoginForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    navigate("/");
   };
 
   return (
