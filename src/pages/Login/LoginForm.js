@@ -29,15 +29,17 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Title>로그인</Title>
         <LoginTop>
-          <Label iserror={errors.id ? "true" : "false"}>
-            <input
-              placeholder="아이디"
-              id="id"
-              type="id"
-              {...register("id")}
-              onChange={(e) => setInfo({ ...info, id: e.target.value })}
-              value={info.id}
-            />
+          <Label>
+            <InputBlock iserror={errors.id ? "true" : "false"}>
+              <input
+                placeholder="아이디"
+                id="id"
+                type="id"
+                {...register("id")}
+                onChange={(e) => setInfo({ ...info, id: e.target.value })}
+                value={info.id}
+              />
+            </InputBlock>
             {info.id || errors.id ? (
               <DeleteButton
                 src={Delete}
@@ -60,15 +62,17 @@ const LoginForm = () => {
           </Label>
           {errors.id && <ErrorText>{errors.id.message}</ErrorText>}
           {info.id && !errors.id ? <Gap /> : ""}
-          <Label iserror={errors.password ? "true" : "false"}>
-            <input
-              placeholder="비밀번호"
-              id="password"
-              type="password"
-              {...register("password")}
-              onChange={(e) => setInfo({ ...info, password: e.target.value })}
-              value={info.password}
-            />
+          <Label>
+            <InputBlock iserror={errors.password ? "true" : "false"}>
+              <input
+                placeholder="비밀번호"
+                id="password"
+                type="password"
+                {...register("password")}
+                onChange={(e) => setInfo({ ...info, password: e.target.value })}
+                value={info.password}
+              />
+            </InputBlock>
             {info.password || errors.password ? (
               <DeleteButton
                 src={Delete}
@@ -128,16 +132,23 @@ const Label = styled.label`
   position: relative;
   width: 540px;
   height: 90px;
+`;
+
+const InputBlock = styled.div`
+  width: 540px;
+  height: 90px;
+  border: 1px solid
+    ${({ iserror, theme }) =>
+      iserror === "true" ? theme.colors.RED : theme.colors.GRAY};
+  border-radius: 25px;
+  padding: 33px 116px 29px 31px;
+
   input {
-    width: 540px;
-    height: 90px;
-    border: 1px solid
-      ${({ iserror, theme }) =>
-        iserror === "true" ? theme.colors.RED : theme.colors.GRAY};
-    border-radius: 25px;
+    width: 393px;
+    height: 28px;
+    border: none;
     font-weight: 500;
     font-size: 20px;
-    padding-left: 28.5px;
     color: ${({ iserror, theme }) =>
       iserror === "true" ? theme.colors.RED : "#000000"};
 
@@ -155,13 +166,13 @@ const Gap = styled.div`
 const DeleteButton = styled.img`
   position: absolute;
   right: 26px;
-  margin-top: 29px;
+  top: 29px;
 `;
 
 const ErrorButton = styled.img`
   position: absolute;
   right: 66px;
-  margin-top: 29px;
+  top: 29px;
 `;
 
 const HelpText = styled.div`

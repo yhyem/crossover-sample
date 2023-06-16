@@ -39,16 +39,18 @@ const JoinForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <JoinTop>
           <Title>회원가입</Title>
-          <Label
-            iserror={errors.id ? "true" : "false"}
-            issuccess={!errors.id && getValues("id") ? "true" : "false"}
-          >
-            <input
-              placeholder="아이디"
-              id="id"
-              type="text"
-              {...register("id")}
-            />
+          <Label>
+            <InputBlock
+              iserror={errors.id ? "true" : "false"}
+              issuccess={!errors.id && getValues("id") ? "true" : "false"}
+            >
+              <input
+                placeholder="아이디"
+                id="id"
+                type="text"
+                {...register("id")}
+              />
+            </InputBlock>
             {getValues("id") || errors.id ? (
               <DeleteButton
                 src={Delete}
@@ -82,18 +84,20 @@ const JoinForm = () => {
           ) : (
             ""
           )}
-          <Label
-            iserror={errors.password ? "true" : "false"}
-            issuccess={
-              !errors.password && getValues("password") ? "true" : "false"
-            }
-          >
-            <input
-              placeholder="비밀번호"
-              id="password"
-              type="password"
-              {...register("password")}
-            />
+          <Label>
+            <InputBlock
+              iserror={errors.password ? "true" : "false"}
+              issuccess={
+                !errors.password && getValues("password") ? "true" : "false"
+              }
+            >
+              <input
+                placeholder="비밀번호"
+                id="password"
+                type="password"
+                {...register("password")}
+              />
+            </InputBlock>
             {getValues("password") || errors.password ? (
               <DeleteButton
                 src={Delete}
@@ -128,16 +132,18 @@ const JoinForm = () => {
           ) : (
             ""
           )}
-          <Label
-            iserror={errors.email ? "true" : "false"}
-            issuccess={!errors.email && getValues("email") ? "true" : "false"}
-          >
-            <input
-              placeholder="이메일"
-              id="email"
-              type="text"
-              {...register("email")}
-            />
+          <Label>
+            <InputBlock
+              iserror={errors.email ? "true" : "false"}
+              issuccess={!errors.email && getValues("email") ? "true" : "false"}
+            >
+              <input
+                placeholder="이메일"
+                id="email"
+                type="text"
+                {...register("email")}
+              />
+            </InputBlock>
             {getValues("email") || errors.email ? (
               <DeleteButton
                 src={Delete}
@@ -223,20 +229,27 @@ const Label = styled.label`
   position: relative;
   width: 540px;
   height: 90px;
+`;
+
+const InputBlock = styled.div`
+  width: 540px;
+  height: 90px;
+  border: 1px solid
+    ${({ iserror, theme, issuccess }) =>
+      iserror === "true"
+        ? theme.colors.RED
+        : issuccess === "true"
+        ? theme.colors.GREEN
+        : theme.colors.GRAY};
+  border-radius: 25px;
+  padding: 33px 116px 29px 31px;
+
   input {
-    width: 540px;
-    height: 90px;
-    border: 1px solid
-      ${({ iserror, theme, issuccess }) =>
-        iserror === "true"
-          ? theme.colors.RED
-          : issuccess === "true"
-          ? theme.colors.GREEN
-          : theme.colors.GRAY};
-    border-radius: 25px;
+    width: 393px;
+    height: 28px;
+    border: none;
     font-weight: 500;
     font-size: 20px;
-    padding-left: 28.5px;
     color: ${({ iserror, issuccess, theme }) =>
       iserror === "true"
         ? theme.colors.RED
@@ -248,6 +261,11 @@ const Label = styled.label`
       color: #000000;
       opacity: 45%;
     }
+  }
+
+  ::placeholder {
+    color: #000000;
+    opacity: 45%;
   }
 `;
 
@@ -266,13 +284,13 @@ const HelpText = styled.div`
 const DeleteButton = styled.img`
   position: absolute;
   right: 26px;
-  margin-top: 29px;
+  top: 29px;
 `;
 
 const StateButton = styled.img`
   position: absolute;
   right: 66px;
-  margin-top: 29px;
+  top: 29px;
 `;
 
 const StateText = styled.div`
