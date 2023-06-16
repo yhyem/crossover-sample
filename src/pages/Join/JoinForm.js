@@ -151,9 +151,7 @@ const JoinForm = () => {
                 alt="input-email"
               />
             ) : (
-              <HelpText>
-                영문과 숫자을 조합하여 5~10글자 미만으로 입력하여 주세요.
-              </HelpText>
+              <HelpText>사용하실 이메일을 입력해주세요. </HelpText>
             )}
             {values.email ? (
               errors.email ? (
@@ -169,7 +167,7 @@ const JoinForm = () => {
             <StateText issuccess="false">{errors.email.message}</StateText>
           )}
           {values.email && !errors.email ? (
-            <StateText issuccess="true">사용 가능한 아이디 입니다.</StateText>
+            <StateText issuccess="true">사용 가능한 이메일 입니다.</StateText>
           ) : (
             ""
           )}
