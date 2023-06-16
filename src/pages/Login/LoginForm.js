@@ -48,6 +48,7 @@ const LoginForm = () => {
                 src={Delete}
                 onClick={() => {
                   setValue("id", "");
+                  errors.id = "";
                 }}
                 alt="input-id"
               />
@@ -78,6 +79,7 @@ const LoginForm = () => {
                 src={Delete}
                 onClick={() => {
                   setValue("password", "");
+                  errors.password = "";
                 }}
                 alt="input-password"
               />
