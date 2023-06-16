@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { initialValues, validation } from "./Validation";
+import { validation } from "./Validation";
 import PrivayPolicyForm from "./PrivayPolicyForm";
 import Button from "../../components/Button";
 
@@ -12,26 +12,27 @@ import Warning from "../../assets/images/icon-error.svg";
 import Success from "../../assets/images/icon-success.svg";
 
 const JoinForm = () => {
-  const [info, setInfo] = useState(initialValues);
   const [isCheck, setIsCheck] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     setValue,
+    watch,
   } = useForm({
     resolver: yupResolver(validation),
     mode: "onChange",
   });
+
+  const values = watch();
 
   const onCheck = () => {
     setIsCheck(!isCheck);
   };
 
   const onSubmit = (data) => {
-    setInfo(data);
+    console.log(data);
   };
 
   return (
@@ -42,7 +43,7 @@ const JoinForm = () => {
           <Label>
             <InputBlock
               iserror={errors.id ? "true" : "false"}
-              issuccess={!errors.id && getValues("id") ? "true" : "false"}
+              issuccess={!errors.id && values.id ? "true" : "false"}
             >
               <input
                 placeholder="아이디"
@@ -51,13 +52,12 @@ const JoinForm = () => {
                 {...register("id")}
               />
             </InputBlock>
-            {getValues("id") || errors.id ? (
+            {values.id || errors.id ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
                   setValue("id", "");
                   errors.id = "";
-                  setInfo({ ...info, id: "" });
                 }}
                 alt="input-id"
               />
@@ -66,11 +66,11 @@ const JoinForm = () => {
                 영문과 숫자을 조합하여 5~10글자 미만으로 입력하여 주세요.
               </HelpText>
             )}
-            {getValues("id") ? (
+            {values.id ? (
               errors.id ? (
                 <StateButton src={Warning} alt="warning-button" />
               ) : (
-                <StateButton src={Success} alt="warning-button" />
+                <StateButton src={Success} alt="success-button" />
               )
             ) : (
               ""
@@ -79,7 +79,7 @@ const JoinForm = () => {
           {errors.id && (
             <StateText issuccess="false">{errors.id.message}</StateText>
           )}
-          {getValues("id") && !errors.id ? (
+          {values.id && !errors.id ? (
             <StateText issuccess="true">사용 가능한 아이디 입니다.</StateText>
           ) : (
             ""
@@ -87,9 +87,7 @@ const JoinForm = () => {
           <Label>
             <InputBlock
               iserror={errors.password ? "true" : "false"}
-              issuccess={
-                !errors.password && getValues("password") ? "true" : "false"
-              }
+              issuccess={!errors.password && values.password ? "true" : "false"}
             >
               <input
                 placeholder="비밀번호"
@@ -98,13 +96,12 @@ const JoinForm = () => {
                 {...register("password")}
               />
             </InputBlock>
-            {getValues("password") || errors.password ? (
+            {values.password || errors.password ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
                   setValue("password", "");
                   errors.password = "";
-                  setInfo({ ...info, password: "" });
                 }}
                 alt="input-password"
               />
@@ -114,11 +111,11 @@ const JoinForm = () => {
                 주세요.
               </HelpText>
             )}
-            {getValues("password") ? (
+            {values.password ? (
               errors.password ? (
                 <StateButton src={Warning} alt="warning-button" />
               ) : (
-                <StateButton src={Success} alt="warning-button" />
+                <StateButton src={Success} alt="success-button" />
               )
             ) : (
               ""
@@ -127,7 +124,7 @@ const JoinForm = () => {
           {errors.password && (
             <StateText issuccess="false">{errors.password.message}</StateText>
           )}
-          {getValues("password") && !errors.password ? (
+          {values.password && !errors.password ? (
             <StateText issuccess="true">사용 가능한 비밀번호 입니다.</StateText>
           ) : (
             ""
@@ -135,7 +132,7 @@ const JoinForm = () => {
           <Label>
             <InputBlock
               iserror={errors.email ? "true" : "false"}
-              issuccess={!errors.email && getValues("email") ? "true" : "false"}
+              issuccess={!errors.email && values.email ? "true" : "false"}
             >
               <input
                 placeholder="이메일"
@@ -144,13 +141,12 @@ const JoinForm = () => {
                 {...register("email")}
               />
             </InputBlock>
-            {getValues("email") || errors.email ? (
+            {values.email || errors.email ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
                   setValue("email", "");
                   errors.email = "";
-                  setInfo({ ...info, email: "" });
                 }}
                 alt="input-email"
               />
@@ -159,11 +155,11 @@ const JoinForm = () => {
                 영문과 숫자을 조합하여 5~10글자 미만으로 입력하여 주세요.
               </HelpText>
             )}
-            {getValues("email") ? (
+            {values.email ? (
               errors.email ? (
                 <StateButton src={Warning} alt="warning-button" />
               ) : (
-                <StateButton src={Success} alt="warning-button" />
+                <StateButton src={Success} alt="success-button" />
               )
             ) : (
               ""
@@ -172,7 +168,7 @@ const JoinForm = () => {
           {errors.email && (
             <StateText issuccess="false">{errors.email.message}</StateText>
           )}
-          {getValues("email") && !errors.email ? (
+          {values.email && !errors.email ? (
             <StateText issuccess="true">사용 가능한 아이디 입니다.</StateText>
           ) : (
             ""
@@ -185,18 +181,12 @@ const JoinForm = () => {
           setHeight="90px"
           fontSize="36px"
           changeBtn={
-            getValues("id") &&
-            getValues("password") &&
-            getValues("email") &&
-            isCheck
+            values.id && values.password && values.email && isCheck
               ? "true"
               : "false"
           }
           isDisabled={
-            getValues("id") &&
-            getValues("password") &&
-            getValues("email") &&
-            isCheck
+            values.id && values.password && values.email && isCheck
               ? false
               : true
           }

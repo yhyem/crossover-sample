@@ -1,10 +1,5 @@
 import * as yup from "yup";
 
-export const initialValues = {
-  id: "",
-  password: "",
-};
-
 export const validation = yup.object().shape({
   id: yup
     .string()
