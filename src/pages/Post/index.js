@@ -73,15 +73,12 @@ const PostContent = styled.div`
   height: 751px;
   border: 2px solid ${({ theme }) => theme.colors.GRAY};
   border-radius: 25px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
 `;
 
 const Content = styled.div`
   width: 714px;
   height: 627px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
 `;
