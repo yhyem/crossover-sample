@@ -12,7 +12,7 @@ const Post = () => {
           </PostTitle>
           <PostContent>
             <Content>내용이 들어갑니다</Content>
-            <CountText>( 0 / 140 )</CountText>
+            <CountText>( 9 / 140 )</CountText>
           </PostContent>
           <BottomBlock>
             <InfoText>※ 작성된 게시글은 수정이 불가합니다.</InfoText>
