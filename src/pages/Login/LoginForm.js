@@ -11,12 +11,14 @@ import Warning from "../../assets/images/icon-error.svg";
 const LoginForm = () => {
   const {
     register,
-    getValues,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(validation),
   });
+
+  const values = watch();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -36,7 +38,7 @@ const LoginForm = () => {
                 {...register("id")}
               />
             </InputBlock>
-            {getValues().id || errors.id ? (
+            {values.id || errors.id ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
@@ -56,7 +58,7 @@ const LoginForm = () => {
             )}
           </Label>
           {errors.id && <ErrorText>{errors.id.message}</ErrorText>}
-          {getValues().id && !errors.id ? <Gap /> : ""}
+          {values.id && !errors.id ? <Gap /> : ""}
           <Label>
             <InputBlock iserror={errors.password ? "true" : "false"}>
               <input
@@ -66,7 +68,7 @@ const LoginForm = () => {
                 {...register("password")}
               />
             </InputBlock>
-            {getValues().password || errors.password ? (
+            {values.password || errors.password ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
@@ -93,8 +95,8 @@ const LoginForm = () => {
           setWidth="540px"
           setHeight="90px"
           fontSize="36px"
-          changeBtn={getValues().id && getValues().password ? "true" : "false"}
-          isDisabled={getValues().id && getValues().password ? false : true}
+          changeBtn={values.id && values.password ? "true" : "false"}
+          isDisabled={values.id && values.password ? false : true}
           backColor="#99CEFF"
           activeColor="#59A4FB"
         >
