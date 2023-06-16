@@ -1,19 +1,17 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { initialValues, validation } from "./Validation";
+import { validation } from "./Validation";
 import Button from "../../components/Button";
 
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
 
 const LoginForm = () => {
-  const [info, setInfo] = useState(initialValues);
-
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -36,15 +34,12 @@ const LoginForm = () => {
                 id="id"
                 type="id"
                 {...register("id")}
-                onChange={(e) => setInfo({ ...info, id: e.target.value })}
-                value={info.id}
               />
             </InputBlock>
-            {info.id || errors.id ? (
+            {getValues().id || errors.id ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  setInfo({ ...info, id: "" });
                   errors.id = "";
                 }}
                 alt="input-id"
@@ -61,7 +56,7 @@ const LoginForm = () => {
             )}
           </Label>
           {errors.id && <ErrorText>{errors.id.message}</ErrorText>}
-          {info.id && !errors.id ? <Gap /> : ""}
+          {getValues().id && !errors.id ? <Gap /> : ""}
           <Label>
             <InputBlock iserror={errors.password ? "true" : "false"}>
               <input
@@ -69,15 +64,12 @@ const LoginForm = () => {
                 id="password"
                 type="password"
                 {...register("password")}
-                onChange={(e) => setInfo({ ...info, password: e.target.value })}
-                value={info.password}
               />
             </InputBlock>
-            {info.password || errors.password ? (
+            {getValues().password || errors.password ? (
               <DeleteButton
                 src={Delete}
                 onClick={() => {
-                  setInfo({ ...info, password: "" });
                   errors.password = "";
                 }}
                 alt="input-password"
@@ -101,8 +93,8 @@ const LoginForm = () => {
           setWidth="540px"
           setHeight="90px"
           fontSize="36px"
-          changeBtn={info.id && info.password ? "true" : "false"}
-          isDisabled={info.id && info.password ? false : true}
+          changeBtn={getValues().id && getValues().password ? "true" : "false"}
+          isDisabled={getValues().id && getValues().password ? false : true}
           backColor="#99CEFF"
           activeColor="#59A4FB"
         >
