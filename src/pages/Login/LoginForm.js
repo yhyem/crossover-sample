@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
-import { AxiosLogin } from "../../assets/api/Login";
+import { AxiosLogin } from "../../api/Login";
 import { validation } from "./Validation";
 import Button from "../../components/Button";
 
@@ -35,7 +35,12 @@ const LoginForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(onSubmit);
+        }}
+      >
         <Title>로그인</Title>
         <LoginTop>
           <Label>

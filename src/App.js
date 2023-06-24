@@ -12,6 +12,8 @@ import { Theme } from "./styles/Theme";
 import WritePost from "./pages/WritePost";
 
 function App() {
+  const isLogin = localStorage.getItem("token");
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />

@@ -11,7 +11,7 @@ import Button from "../../components/Button";
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
 import Success from "../../assets/images/icon-success.svg";
-import { AxiosJoin } from "../../assets/api/Join";
+import { AxiosJoin } from "../../api/Join";
 
 const JoinForm = () => {
   const navigate = useNavigate();
