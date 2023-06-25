@@ -1,10 +1,10 @@
 import { Axios } from "./Axios";
 
-export const AxiosPosts = async (callbackFunctions) => {
+export const AxiosPosts = async (page, callbackFunctions) => {
   const { getDataSuccess } = callbackFunctions;
   const token = localStorage.getItem("token");
 
-  await Axios.get(`/api/posts`, {
+  await Axios.get(`/api/posts?page=${page}`, {
     headers: { Authorization: `Bearer ${token}` },
   })
     .then((res) => {
