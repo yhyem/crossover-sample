@@ -3,15 +3,22 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Button from "../../components/Button";
+import { useNavigate } from "react-router-dom";
+import { AxiosPostWrite } from "../../api/PostWrite";
 
 const WritePost = () => {
+  const navigate = useNavigate();
   const [titleCount, setTitleCount] = useState("");
   const [contentCount, setContentCount] = useState("");
 
   const { handleSubmit, register } = useForm();
 
+  const callbackFunctions = {
+    navigateSuccess: () => navigate("/main"),
+  };
+
   const onSubmit = (data) => {
-    console.log(data);
+    AxiosPostWrite(data, callbackFunctions);
   };
 
   return (

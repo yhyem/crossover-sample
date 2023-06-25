@@ -1,34 +1,62 @@
 import { styled } from "styled-components";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "../../components/Button";
+import { AxiosPost } from "../../api/Post";
+import { AxiosPostDelete } from "../../api/PostDelete";
 
 const Post = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [post, setPost] = useState("");
+
+  const { title, content, isMine } = post;
+
+  const onDeletePost = () => {
+    AxiosPostDelete(id, callbackFunctions);
+  };
+
+  useEffect(() => {
+    AxiosPost(id, callbackFunctions);
+  }, []);
+
+  const callbackFunctions = {
+    getDataSuccess: (data) => setPost(data),
+    navigateSuccess: () => navigate("/main"),
+  };
+
   return (
     <>
       <DetailBlock>
         <PostBlock>
           <PostTitle>
-            <Title>제목:</Title> <CountText>( 0 / 20 )</CountText>
+            <Title>제목: {title}</Title>
+            <CountText>( {String(title).length} / 20 )</CountText>
           </PostTitle>
           <PostContent>
-            <Content>내용이 들어갑니다</Content>
-            <CountText>( 9 / 140 )</CountText>
+            <Content>{content}</Content>
+            <CountText>( {String(content).length} / 140 )</CountText>
           </PostContent>
-          <BottomBlock>
-            <InfoText>※ 작성된 게시글은 수정이 불가합니다.</InfoText>
-            <ButtonBlock>
-              <Button
-                setWidth="233px"
-                setHeight="70px"
-                changeBtn="false"
-                fontSize="21px"
-                isDisabled={false}
-                backColor="#717171"
-              >
-                삭제하기
-              </Button>
-            </ButtonBlock>
-          </BottomBlock>
+          {isMine && (
+            <BottomBlock>
+              <InfoText>※ 작성된 게시글은 수정이 불가합니다.</InfoText>
+              <ButtonBlock>
+                <Button
+                  setWidth="233px"
+                  setHeight="70px"
+                  changeBtn="true"
+                  fontSize="21px"
+                  activeColor="#717171"
+                  isDisabled={false}
+                  backColor="#717171"
+                  onDelete={onDeletePost}
+                >
+                  삭제하기
+                </Button>
+              </ButtonBlock>
+            </BottomBlock>
+          )}
         </PostBlock>
       </DetailBlock>
     </>

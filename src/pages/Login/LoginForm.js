@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
+import { AxiosLogin } from "../../api/Login";
 import { validation } from "./Validation";
 import Button from "../../components/Button";
 
@@ -24,9 +25,12 @@ const LoginForm = () => {
 
   const values = watch();
 
+  const callbackFunctions = {
+    navigateSuccess: () => navigate("/main"),
+  };
+
   const onSubmit = (data) => {
-    console.log(data);
-    navigate("/");
+    AxiosLogin(data, callbackFunctions);
   };
 
   return (

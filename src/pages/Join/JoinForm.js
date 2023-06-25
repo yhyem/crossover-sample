@@ -2,6 +2,7 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 import { validation } from "./Validation";
 import PrivayPolicyForm from "./PrivayPolicyForm";
@@ -10,8 +11,11 @@ import Button from "../../components/Button";
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
 import Success from "../../assets/images/icon-success.svg";
+import { AxiosJoin } from "../../api/Join";
 
 const JoinForm = () => {
+  const navigate = useNavigate();
+
   const [isCheck, setIsCheck] = useState(false);
 
   const {
@@ -27,17 +31,21 @@ const JoinForm = () => {
 
   const values = watch();
 
+  const callbackFunctions = {
+    navigateSuccess: () => navigate("/"),
+  };
+
   const onCheck = () => {
     setIsCheck(!isCheck);
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmitData = (data) => {
+    AxiosJoin(data, callbackFunctions);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitData)}>
         <JoinTop>
           <Title>회원가입</Title>
           <Label>
