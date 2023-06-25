@@ -16,8 +16,6 @@ const Main = () => {
     getDataSuccess: (data) => setPostList(data),
   };
 
-  console.log(postList);
-
   return (
     <>
       <MainBlock>

@@ -7,7 +7,6 @@ import { AxiosPost } from "../../api/Post";
 
 const Post = () => {
   let { id } = useParams();
-  console.log(id);
   const [post, setPost] = useState("");
 
   const { title, content, isMine } = post;
