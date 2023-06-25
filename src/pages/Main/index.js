@@ -24,9 +24,7 @@ const Main = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 스크롤 이벤트를 처리하는 함수
       if (
-        // 로딩 중이 아니고, 스크롤이 페이지의 맨 아래에 도달했을 때만 데이터를 다시 로드
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight
       ) {
