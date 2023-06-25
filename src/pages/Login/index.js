@@ -1,19 +1,25 @@
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import LoginForm from "./LoginForm";
 
 const Login = () => {
+  const isToken = localStorage.getItem("token") ? true : false;
+
   return (
     <>
-      <LoginBlock>
-        <ContentBlock>
-          <LoginForm />
-          <JoinButton>
-            <Link to="/join">회원가입</Link>
-          </JoinButton>
-        </ContentBlock>
-      </LoginBlock>
+      {isToken ? (
+        <Navigate to="/main" replace={true} />
+      ) : (
+        <LoginBlock>
+          <ContentBlock>
+            <LoginForm />
+            <JoinButton>
+              <Link to="/join">회원가입</Link>
+            </JoinButton>
+          </ContentBlock>
+        </LoginBlock>
+      )}
     </>
   );
 };

@@ -23,7 +23,13 @@ const Content = ({ data }) => {
           {isOverDate ? (
             <Time>{Math.floor(timeTerm / 24)}일전</Time>
           ) : (
-            <Time>{createTime.getHours() + ":" + createTime.getMinutes()}</Time>
+            <Time>
+              {createTime.getHours() +
+                ":" +
+                (createTime.getMinutes() < 10
+                  ? "0" + createTime.getMinutes()
+                  : createTime.getMinutes())}
+            </Time>
           )}
         </Post>
       </ContentBlock>
