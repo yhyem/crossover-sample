@@ -18,11 +18,11 @@ function App() {
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <Header />
-      {isToken ? <Link to="/" /> : <Link to="/login" />}
+      {isToken ? <Link to="/main" /> : <Link to="/" />}
       <Routes>
-        <Route path="/login" exact element={<Login />} />
+        <Route path="/" exact element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/" element={<Main />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/write" element={<WritePost />} />
       </Routes>

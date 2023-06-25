@@ -46,7 +46,7 @@ const Main = () => {
           </ContentBlock>
         </MainBlock>
       ) : (
-        <Navigate to="/login" replace={true} />
+        <Navigate to="/" replace={true} />
       )}
     </>
   );
