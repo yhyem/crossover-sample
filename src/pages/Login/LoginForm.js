@@ -26,7 +26,7 @@ const LoginForm = () => {
   const values = watch();
 
   const callbackFunctions = {
-    navigateSuccess: () => navigate("/"),
+    navigateSuccess: () => navigate("/main"),
   };
 
   const onSubmit = (data) => {

@@ -25,18 +25,11 @@ function App() {
       <GlobalStyle />
       <Header />
       <Routes>
-        {isLogin ? (
-          <>
-            <Route path="/" element={<Main />} />
-            <Route path="/post/:id" element={<Post />} />
-            <Route path="/write" element={<WritePost />} />
-          </>
-        ) : (
-          <>
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/join" element={<Join />} />
-          </>
-        )}
+        <Route path="/" element={<Login />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/post/:id" element={<Post />} />
+        <Route path="/write" element={<WritePost />} />
       </Routes>
     </ThemeProvider>
   );

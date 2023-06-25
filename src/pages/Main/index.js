@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AxiosPosts } from "../../api/Posts";
 
 import Content from "./Content";
 import Button from "../../components/Button";
 
 const Main = () => {
+  const isToken = localStorage.getItem("token") ? true : false;
   const [postList, setPostList] = useState([]);
   useEffect(() => {
     AxiosPosts(callbackFunctions);
@@ -18,31 +19,35 @@ const Main = () => {
 
   return (
     <>
-      <MainBlock>
-        <ContentBlock>
-          <ButtonBlock>
-            <Link to="/write">
-              <Button
-                setWidth="233px"
-                setHeight="70px"
-                changeBtn="false"
-                fontSize="21px"
-                isDisabled={false}
-                backColor="#2186FC"
-              >
-                작성하기
-              </Button>
-            </Link>
-          </ButtonBlock>
-          {postList.map((item) => (
-            <div key={item.id}>
-              <Link to={`/post/${item.id}`}>
-                <Content data={item} />
+      {isToken ? (
+        <MainBlock>
+          <ContentBlock>
+            <ButtonBlock>
+              <Link to="/write">
+                <Button
+                  setWidth="233px"
+                  setHeight="70px"
+                  changeBtn="false"
+                  fontSize="21px"
+                  isDisabled={false}
+                  backColor="#2186FC"
+                >
+                  작성하기
+                </Button>
               </Link>
-            </div>
-          ))}
-        </ContentBlock>
-      </MainBlock>
+            </ButtonBlock>
+            {postList.map((item) => (
+              <div key={item.id}>
+                <Link to={`/post/${item.id}`}>
+                  <Content data={item} />
+                </Link>
+              </div>
+            ))}
+          </ContentBlock>
+        </MainBlock>
+      ) : (
+        <Navigate to="/" replace={true} />
+      )}
     </>
   );
 };
