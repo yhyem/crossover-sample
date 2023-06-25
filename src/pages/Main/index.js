@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+import { AxiosPosts } from "../../api/Posts";
 
 import Content from "./Content";
 import Button from "../../components/Button";
 
-import { MockupData } from "./MokupData";
-
 const Main = () => {
-  const [data, setData] = useState(MockupData);
+  const [postList, setPostList] = useState([]);
+  useEffect(() => {
+    AxiosPosts(callbackFunctions);
+  }, []);
+
+  const callbackFunctions = {
+    getDataSuccess: (data) => setPostList(data),
+  };
+
+  console.log(postList);
 
   return (
     <>
@@ -28,9 +36,9 @@ const Main = () => {
               </Button>
             </Link>
           </ButtonBlock>
-          {data.map((item) => (
+          {postList.map((item) => (
             <div key={item.id}>
-              <Link to={`/${item.id}`}>
+              <Link to={`/post/${item.id}`}>
                 <Content data={item} />
               </Link>
             </div>

@@ -1,19 +1,23 @@
 import { styled } from "styled-components";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo.svg";
 import logout from "../assets/images/btn-logout.svg";
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
+  const isLogin = localStorage.getItem("token") ? true : false;
 
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   return (
     <HeaderBlock>
       <Link to="/">
         <Logo src={logo} />
       </Link>
-      {isLogin && <Logout src={logout} />}
+      {isLogin && <LogoutButton src={logout} onClick={onLogout} />}
     </HeaderBlock>
   );
 };
@@ -30,7 +34,7 @@ const Logo = styled.img`
   margin: 41px 0 41px 363px;
 `;
 
-const Logout = styled.img`
+const LogoutButton = styled.img`
   float: right;
   margin: 42px 363px 42px 0;
 `;

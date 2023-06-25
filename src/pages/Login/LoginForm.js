@@ -35,12 +35,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit(onSubmit);
-        }}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Title>로그인</Title>
         <LoginTop>
           <Label>

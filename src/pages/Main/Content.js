@@ -4,11 +4,15 @@ import profile from "../../assets/images/icon-profile.svg";
 import myprofile from "../../assets/images/icon-profile-me.svg";
 
 const Content = ({ data }) => {
-  const { isMe, title, content, time } = data;
+  const { isMine, title, content, createdAt } = data;
+  const createTime = new Date(createdAt);
+  const timeTerm = (new Date() - new Date(createdAt)) / 1000 / 60 / 60;
+  const isOverDate = timeTerm > 24 ? true : false;
+
   return (
     <>
       <ContentBlock>
-        {isMe ? (
+        {isMine ? (
           <Profile src={myprofile} alt="myprofile" />
         ) : (
           <Profile src={profile} alt="profile" />
@@ -16,7 +20,11 @@ const Content = ({ data }) => {
         <Post>
           <Title>제목: {title}</Title>
           <PostContent>{content}</PostContent>
-          <Time>{time}</Time>
+          {isOverDate ? (
+            <Time>{Math.floor(timeTerm / 24)}일전</Time>
+          ) : (
+            <Time>{createTime.getHours() + ":" + createTime.getMinutes()}</Time>
+          )}
         </Post>
       </ContentBlock>
     </>
