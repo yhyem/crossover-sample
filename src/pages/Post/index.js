@@ -23,7 +23,7 @@ const Post = () => {
 
   const callbackFunctions = {
     getDataSuccess: (data) => setPost(data),
-    navigateSuccess: () => navigate("/main"),
+    navigateSuccess: () => navigate("/"),
   };
 
   return (

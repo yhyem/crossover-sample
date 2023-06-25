@@ -10,11 +10,11 @@ const Header = () => {
 
   const onLogout = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/login");
   };
   return (
     <HeaderBlock>
-      <Link to="/main">
+      <Link to="/">
         <Logo src={logo} />
       </Link>
       {isLogin && <LogoutButton src={logout} onClick={onLogout} />}

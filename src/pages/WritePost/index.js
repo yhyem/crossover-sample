@@ -14,7 +14,7 @@ const WritePost = () => {
   const { handleSubmit, register } = useForm();
 
   const callbackFunctions = {
-    navigateSuccess: () => navigate("/main"),
+    navigateSuccess: () => navigate("/"),
   };
 
   const onSubmit = (data) => {

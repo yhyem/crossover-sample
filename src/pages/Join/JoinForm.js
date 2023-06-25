@@ -32,7 +32,7 @@ const JoinForm = () => {
   const values = watch();
 
   const callbackFunctions = {
-    navigateSuccess: () => navigate("/"),
+    navigateSuccess: () => navigate("/login"),
   };
 
   const onCheck = () => {
