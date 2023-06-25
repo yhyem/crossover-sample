@@ -10,6 +10,7 @@ const Button = (props) => {
     fontSize,
     backColor,
     activeColor,
+    onDelete,
   } = props;
   return (
     <>
@@ -21,6 +22,9 @@ const Button = (props) => {
         fontSize={fontSize}
         backcolor={backColor}
         activecolor={activeColor}
+        onClick={() => {
+          onDelete && onDelete();
+        }}
       >
         {children}
       </ButtonBlock>

@@ -1,17 +1,17 @@
 import { Axios } from "./Axios";
 
-export const AxiosPost = async (id, callbackFunctions) => {
-  const { getDataSuccess } = callbackFunctions;
+export const AxiosPostDelete = async (id, callbackFunctions) => {
+  const { navigateSuccess } = callbackFunctions;
   const token = localStorage.getItem("token");
 
-  await Axios.get(`/api/posts/${id}`, {
+  await Axios.delete(`/api/posts/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   })
     .then((res) => {
-      getDataSuccess(res.data);
+      alert("게시물이 삭제되었습니다");
+      navigateSuccess();
     })
     .catch((error) => {
-      console.log(error);
       error.response.data.message.map((message) => alert(message));
     });
 };

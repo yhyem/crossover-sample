@@ -1,15 +1,21 @@
 import { styled } from "styled-components";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "../../components/Button";
 import { AxiosPost } from "../../api/Post";
+import { AxiosPostDelete } from "../../api/PostDelete";
 
 const Post = () => {
-  let { id } = useParams();
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [post, setPost] = useState("");
 
   const { title, content, isMine } = post;
+
+  const onDeletePost = () => {
+    AxiosPostDelete(id, callbackFunctions);
+  };
 
   useEffect(() => {
     AxiosPost(id, callbackFunctions);
@@ -17,7 +23,9 @@ const Post = () => {
 
   const callbackFunctions = {
     getDataSuccess: (data) => setPost(data),
+    navigateSuccess: () => navigate("/"),
   };
+
   return (
     <>
       <DetailBlock>
@@ -37,10 +45,12 @@ const Post = () => {
                 <Button
                   setWidth="233px"
                   setHeight="70px"
-                  changeBtn="false"
+                  changeBtn="true"
                   fontSize="21px"
+                  activeColor="#717171"
                   isDisabled={false}
                   backColor="#717171"
+                  onDelete={onDeletePost}
                 >
                   삭제하기
                 </Button>
