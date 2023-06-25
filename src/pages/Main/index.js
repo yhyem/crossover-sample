@@ -31,7 +31,6 @@ const Main = () => {
         document.documentElement.scrollHeight
       ) {
         AxiosPosts(page, callbackFunctions);
-        console.log("데이터 새로 로딩");
       }
     };
 
