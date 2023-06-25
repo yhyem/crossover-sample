@@ -37,4 +37,5 @@ const Logo = styled.img`
 const LogoutButton = styled.img`
   float: right;
   margin: 42px 363px 42px 0;
+  cursor: pointer;
 `;

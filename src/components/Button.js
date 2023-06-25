@@ -44,4 +44,5 @@ const ButtonBlock = styled.button`
   line-height: ${({ height }) => height};
   font-size: ${({ fontSize }) => fontSize};
   border-radius: 25px;
+  cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
 `;
