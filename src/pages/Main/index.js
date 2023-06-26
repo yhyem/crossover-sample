@@ -18,8 +18,8 @@ const Main = () => {
   const callbackFunctions = {
     getDataSuccess: (data) => {
       setPostList((prevData) => [...prevData, ...data]);
-      setPage((prevPage) => prevPage + 1);
     },
+    setPageNumber: () => setPage((prevPage) => prevPage + 1),
   };
 
   useEffect(() => {
