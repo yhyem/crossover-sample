@@ -12,6 +12,7 @@ import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
 import Success from "../../assets/images/icon-success.svg";
 import { AxiosJoin } from "../../api/Join";
+import Input from "../../components/Input";
 
 const JoinForm = () => {
   const navigate = useNavigate();
@@ -53,11 +54,11 @@ const JoinForm = () => {
               iserror={errors.id ? "true" : "false"}
               issuccess={!errors.id && values.id ? "true" : "false"}
             >
-              <input
+              <Input
                 placeholder="아이디"
-                id="id"
-                type="text"
-                {...register("id")}
+                inputId="id"
+                inputType="text"
+                register={register}
               />
             </InputBlock>
             {values.id || errors.id ? (
@@ -97,11 +98,11 @@ const JoinForm = () => {
               iserror={errors.password ? "true" : "false"}
               issuccess={!errors.password && values.password ? "true" : "false"}
             >
-              <input
+              <Input
                 placeholder="비밀번호"
-                id="password"
-                type="password"
-                {...register("password")}
+                inputId="password"
+                inputType="password"
+                register={register}
               />
             </InputBlock>
             {values.password || errors.password ? (
@@ -142,11 +143,11 @@ const JoinForm = () => {
               iserror={errors.email ? "true" : "false"}
               issuccess={!errors.email && values.email ? "true" : "false"}
             >
-              <input
+              <Input
                 placeholder="이메일"
-                id="email"
-                type="text"
-                {...register("email")}
+                inputId="email"
+                inputType="text"
+                register={register}
               />
             </InputBlock>
             {values.email || errors.email ? (

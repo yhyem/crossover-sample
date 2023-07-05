@@ -32,11 +32,11 @@ const Post = () => {
         <PostBlock>
           <PostTitle>
             <Title>제목: {title}</Title>
-            <CountText>( {String(title).length} / 20 )</CountText>
+            <CountText>( {title && title.length} / 20 )</CountText>
           </PostTitle>
           <PostContent>
             <Content>{content}</Content>
-            <CountText>( {String(content).length} / 140 )</CountText>
+            <CountText>( {content && content.length} / 140 )</CountText>
           </PostContent>
           {isMine && (
             <BottomBlock>

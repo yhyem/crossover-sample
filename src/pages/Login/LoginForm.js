@@ -9,6 +9,7 @@ import Button from "../../components/Button";
 
 import Delete from "../../assets/images/icon-cancel.svg";
 import Warning from "../../assets/images/icon-error.svg";
+import Input from "../../components/Input";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -40,11 +41,11 @@ const LoginForm = () => {
         <LoginTop>
           <Label>
             <InputBlock iserror={errors.id ? "true" : "false"}>
-              <input
+              <Input
                 placeholder="아이디"
-                id="id"
-                type="id"
-                {...register("id")}
+                inputId="id"
+                inputType="text"
+                register={register}
               />
             </InputBlock>
             {values.id || errors.id ? (
@@ -71,11 +72,11 @@ const LoginForm = () => {
           {values.id && !errors.id ? <Gap /> : ""}
           <Label>
             <InputBlock iserror={errors.password ? "true" : "false"}>
-              <input
+              <Input
                 placeholder="비밀번호"
-                id="password"
-                type="password"
-                {...register("password")}
+                inputId="password"
+                inputType="password"
+                register={register}
               />
             </InputBlock>
             {values.password || errors.password ? (

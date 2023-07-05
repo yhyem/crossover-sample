@@ -1,9 +1,9 @@
 import { Axios } from "./Axios";
 
-export const AxiosJoin = async (data, callbackFunctions) => {
+export const AxiosJoin = (data, callbackFunctions) => {
   const { navigateSuccess } = callbackFunctions;
 
-  await Axios.post(`/api/auth/register`, {
+  Axios.post(`/api/auth/register`, {
     id: data.id,
     password: data.password,
     email: data.email,
