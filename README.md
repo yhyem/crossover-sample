@@ -28,11 +28,14 @@ axios**
 
 **크로스 오버 디자인 파트 피그마** 
 
-✨소현님께서 완성해주신 피그마 ✨
+✨소현님께서 완성해주신 피그마✨
 
 [크로스오버](https://www.figma.com/file/7xhNzHWK8oO8LEwLmFh6Na/크로스오버?type=design&node-id=39-2037&t=taVvbZJUD8SPdRbc-0)
 
 코멘트 부분도 꼼꼼하게 확인!
+
+✨서버팀이 완성해주신 API 문서✨
+[API 문서](https://www.notion.so/likelion-11th/API-e88dd3745c6249719019b69498e10d91)
 
 - Postman 세팅
 
